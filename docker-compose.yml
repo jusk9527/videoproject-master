@@ -3,7 +3,7 @@ services:
   app:
     restart: always
     build: .
-    command: bash -c "python3 manage.py collectstatic --no-input && python3 manage.py migrate && gunicorn --timeout=30 --workers=4 --bind :80 django_app.wsgi:application"
+    command: bash -c "python3 manage.py collectstatic --no-input && python3 manage.py migrate && gunicorn --timeout=30 --workers=4 --bind :80 videoproject.wsgi:application"
     volumes:
       - .:/code
       - static-volume:/code/collected_static
