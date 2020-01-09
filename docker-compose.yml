@@ -6,7 +6,7 @@ services:
     command: bash -c "python3 manage.py collectstatic --no-input && python3 manage.py migrate && gunicorn --timeout=30 --workers=4 --bind :80 videoproject.wsgi:application"
     volumes:
       - .:/code
-      - static-volume:/code/collected_static
+      - static-volume:/code/static
     expose:
       - "80"
 #    depends_on:
@@ -32,7 +32,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - static-volume:/code/collected_static
+      - static-volume:/code/static
       - ./config/nginx:/etc/nginx/conf.d
     depends_on:
       - app
